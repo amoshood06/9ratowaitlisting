@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2573977636104945">
     <title>9rato Waitlist</title>
     <link rel="stylesheet" href="./asset/css/home.css">
     <link rel="shortcut icon" href="./asset/image/9ratoLogo.png" type="image/x-icon">
