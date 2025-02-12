@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9rato Withdrawal</title>
     <link rel="stylesheet" href="./asset/toast/toastr.min.css">
+    <link rel="shortcut icon" href="../asset/image/9ratoLogo.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black min-h-screen flex flex-col">
@@ -12,10 +13,9 @@
     <nav class="bg-[#0B4D3A] p-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center">
-                <img src="/placeholder.svg" alt="9rato Logo" class="w-8 h-8 mr-2">
-                <span class="text-white text-xl font-bold">9rato</span>
+                <img src="../asset/image/9ratoLogo.png" alt="9rato Logo" class="w-8 h-8 mr-2">
             </div>
-            <a href="#" class="text-white hover:text-yellow-400">Back to Dashboard</a>
+            <a href="index.php" class="text-white hover:text-yellow-400">Back to Dashboard</a>
         </div>
     </nav>
 
