@@ -43,7 +43,7 @@ $total_records = $stmt->fetchColumn();
 $total_pages = ceil($total_records / $limit);
 
 // Generate referral link
-$referral_link = "https://9rato.com/register.php?ref=" . $referral_code;
+$referral_link = "https://9rato.com/index.php?ref=" . $referral_code;
 ?>
 
 
