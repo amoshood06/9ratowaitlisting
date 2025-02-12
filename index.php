@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9rato Waitlist</title>
     <link rel="stylesheet" href="./asset/css/home.css">
+    <link rel="stylesheet" href="./asset/toast/toastr.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black min-h-screen flex items-center justify-center p-4 md:p-8">
@@ -43,15 +44,18 @@
                 </div>
 
                 <!-- Email Form -->
-                <div class="flex gap-2">
-                    <input type="email" placeholder="Email address" class="flex-1 bg-white border-0 rounded-md p-2">
-                    <button class="bg-yellow-400 text-[#0B4D3A] hover:bg-yellow-500 px-4 py-2 rounded-md ml-[-20px]">Submit</button>
-                </div>
-
+                 <form id="registerForm">
+                    <div class="flex gap-2">
+                        <input type="email" name="email" required placeholder="Email address" class="flex-1 bg-white border-0 rounded-md p-2">
+                        <button type="submit" class="bg-yellow-400 text-[#0B4D3A] hover:bg-yellow-500 px-4 py-2 rounded-md ml-[-20px]">Submit</button>
+                    </div>
+                </form>
                 <!-- Bottom Section -->
                 <div class="mt-12 flex items-end justify-between">
                     <div>
-                        <button class="bg-yellow-400 text-[#0B4D3A] hover:bg-yellow-500 px-4 py-2 rounded-md w-32">Login</button>
+                        <a href="login.php">
+                            <button class="bg-yellow-400 text-[#0B4D3A] hover:bg-yellow-500 px-4 py-2 rounded-md w-32">Login</button>
+                        </a>
                         <div class="text-white mt-4">
                             Get <span class="text-yellow-400">₦1000 per</span> referral to Jion Waitlist
                         </div>
@@ -82,5 +86,43 @@
             </div>
         </div>
     </div>
+    <script src="./asset/toast/jquery-3.7.1.min.js"></script>
+    <script src="./asset/toast/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#registerForm").on("submit", function (e) {
+                e.preventDefault(); 
+                var formData = $(this).serialize(); 
+
+                $.ajax({
+                    type: "POST",
+                    url: "process_register.php",
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "timeOut": "3000"
+                        };
+
+                        if (response.status == "success") {
+                            toastr["success"](response.message, "Registration Successful");
+                            setTimeout(function () {
+                                window.location.href = "login.php"; 
+                            }, 2000);
+                        } else {
+                            toastr["error"](response.message, "Registration Failed");
+                        }
+                    },
+                    error: function () {
+                        toastr["error"]("Something went wrong!", "Error");
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

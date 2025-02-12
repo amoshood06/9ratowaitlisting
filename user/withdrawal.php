@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9rato Withdrawal</title>
+    <link rel="stylesheet" href="./asset/toast/toastr.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black min-h-screen flex flex-col">
@@ -32,7 +33,7 @@
             <!-- Current Balance -->
             <div class="text-white mb-6">
                 <p class="text-lg">Your Current Balance:</p>
-                <p class="text-3xl font-bold text-yellow-400">₦5,000</p>
+                <p id="balance" class="text-3xl font-bold text-yellow-400">₦0</p>
             </div>
 
             <!-- Withdrawal Form (Disabled) -->
@@ -77,5 +78,53 @@
             <p>&copy; 2025 9rato. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="./asset/toast/jquery-3.7.1.min.js"></script>
+    <script src="./asset/toast/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Fetch balance dynamically
+            $.ajax({
+                url: "get_balance.php",
+                type: "GET",
+                success: function(response) {
+                    $("#balance").text("₦" + response.balance);
+                }
+            });
+
+            $("#withdrawForm").on("submit", function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "process_withdraw.php",
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "timeOut": "3000"
+                        };
+
+                        if (response.status == "success") {
+                            toastr["success"](response.message, "Withdrawal Successful");
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2000);
+                        } else {
+                            toastr["error"](response.message, "Withdrawal Failed");
+                        }
+                    },
+                    error: function () {
+                        toastr["error"]("Something went wrong!", "Error");
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

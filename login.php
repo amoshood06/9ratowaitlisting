@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9rato Login</title>
+    <link rel="stylesheet" href="./asset/toast/toastr.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black min-h-screen flex items-center justify-center p-4 md:p-8">
@@ -11,8 +12,8 @@
         <div class="p-8 md:p-12">
             <!-- Top Icons -->
             <div class="flex items-center gap-4 mb-8">
-                <div class="bg-yellow-400 p-2 rounded-full">
-                    <img src="/placeholder.svg" alt="Shopping Cart" class="w-6 h-6">
+                <div class="p-0">
+                    <img src="./asset/image/9ratoLogo.png" alt="Shopping Cart" class="w-10 h-10">
                 </div>
                 <div class="flex gap-2 ml-auto">
                     <span class="text-2xl">🔐</span>
@@ -30,7 +31,7 @@
                 </p>
 
                 <!-- Email Form -->
-                <form class="space-y-4">
+                <form id="loginForm" class="space-y-4">
                     <div>
                         <label for="email" class="block text-sm font-medium text-white mb-1">Email Address</label>
                         <input type="email" id="email" name="email" placeholder="you@example.com" required
@@ -43,10 +44,47 @@
                 </form>
 
                 <div class="text-center text-white">
-                    <p>Don't have an account? <a href="#" class="text-yellow-400 hover:underline">Join the waitlist</a></p>
+                    <p>Don't have an account? <a href="index.php" class="text-yellow-400 hover:underline">Join the waitlist</a></p>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./asset/toast/jquery-3.7.1.min.js"></script>
+    <script src="./asset/toast/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#loginForm").on("submit", function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "process_login.php",
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "timeOut": "3000"
+                        };
+
+                        if (response.status == "success") {
+                            toastr["success"](response.message, "Login Successful");
+                            setTimeout(function () {
+                                window.location.href = "user/index.php"; 
+                            }, 2000);
+                        } else {
+                            toastr["error"](response.message, "Login Failed");
+                        }
+                    },
+                    error: function () {
+                        toastr["error"]("Something went wrong!", "Error");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
