@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2573977636104945"
+     crossorigin="anonymous"></script>
     <title>9rato Login</title>
     <link rel="stylesheet" href="./asset/toast/toastr.min.css">
     <script src="https://cdn.tailwindcss.com"></script>

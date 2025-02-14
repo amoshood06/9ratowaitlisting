@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9rato Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center p-4 md:p-8">
+    <div class="w-full max-w-md bg-[#0B4D3A] rounded-3xl overflow-hidden shadow-xl">
+        <div class="p-8 md:p-12">
+            <!-- Top Icons -->
+            <div class="flex items-center justify-center mb-8">
+                <div class="bg-yellow-400 p-3 rounded-full">
+                    <img src="/placeholder.svg" alt="9rato Admin Logo" class="w-12 h-12">
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="space-y-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-white leading-tight text-center">
+                    9rato Admin Portal
+                </h1>
+                
+                <p class="text-white/90 text-center">
+                    Enter your credentials to access the admin dashboard.
+                </p>
+
+                <!-- Login Form -->
+                <form class="space-y-4">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-white mb-1">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required
+                               class="w-full bg-white border-0 rounded-md p-2 text-[#0B4D3A]">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-white mb-1">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required
+                               class="w-full bg-white border-0 rounded-md p-2 text-[#0B4D3A]">
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-yellow-400 text-[#0B4D3A] hover:bg-yellow-500 px-4 py-2 rounded-md font-semibold transition duration-300">
+                        Log In
+                    </button>
+                </form>
+
+                <div class="text-center text-white text-sm">
+                    <a href="#" class="hover:underline">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-[#0B4D3A] text-white p-4">
+        <div class="container mx-auto text-center text-sm">
+            <p>&copy; 2025 9rato. All rights reserved. | Admin Access Only</p>
+        </div>
+    </footer>
+</body>
+</html>
